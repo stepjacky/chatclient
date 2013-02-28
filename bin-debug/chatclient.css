@@ -1,0 +1,18 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+
+global
+{
+	font-family: Arial;
+	font-size: 14;
+	font-weight: normal;
+	border:#000000 1px solid;
+	content-background-color: #FFFFFF;
+	content-background-alpha: 1.0;
+}
+Tree { 
+	folderClosedIcon: ClassReference（null）; 
+	folderOpenIcon: ClassReference（null）; 
+} 

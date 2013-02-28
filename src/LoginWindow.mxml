@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow
+	      xmlns:fx="http://ns.adobe.com/mxml/2009"
+		  xmlns:s="library://ns.adobe.com/flex/spark"
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  width="290" height="300" 
+		  backgroundColor="#3C5B7A" 
+		  title="登陆OA" 
+		   creationComplete="titlewindow1_creationCompleteHandler(event)"
+		  
+		  >
+	
+	<fx:Script>
+		<![CDATA[
+			import com.adobe.utils.StringUtil;
+			
+			import mx.controls.Alert;
+			import mx.core.IFlexDisplayObject;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			
+			import org.atomsoft.air.chatclient.ChatSocket;
+			import org.atomsoft.air.event.LoginEvent;
+			import org.atomsoft.air.event.UserEvent;
+			
+			import spark.events.TitleWindowBoundsEvent;		
+			
+			
+			protected function titlewindow1_creationCompleteHandler(event:FlexEvent):void
+			{
+				
+				this.y+=98;
+				this.addEventListener(TitleWindowBoundsEvent.WINDOW_MOVE_START,function(event:TitleWindowBoundsEvent):void{
+					event.preventDefault();
+				});
+				
+				
+			}
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+			   var main:MainChatClient =  this.parentApplication as MainChatClient;
+			   main.close();
+				
+			}
+			//登陆
+			protected function button2_clickHandler(event:MouseEvent):void
+			{
+				var hasValue:Boolean = StringUtil.stringHasValue(username.text) && StringUtil.stringHasValue(password.text);
+				if(hasValue){
+					
+					
+					var main:MainChatClient =  this.parentApplication as MainChatClient;
+				    this.enabled = false;
+				    var loginEvent:LoginEvent = new LoginEvent();
+				    loginEvent.userName = username.text;
+					loginEvent.passWord = password.text;
+					main.dispatchEvent(loginEvent);
+						
+		
+				}else{
+					
+					Alert.show("请输入正确的用户名和密码？","系统"); 
+				}
+				
+				
+			}	
+
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<mx:HRule x="19" y="63" width="259" height="6"/>
+	<mx:LinkButton x="54" y="9" width="177" height="44" label="庆华OA IM" color="#A9A301"
+				   focusColor="#289FC1" fontSize="30" fontWeight="bold"/>
+	<s:Label x="24" y="102" color="#B6D219" fontSize="14" text="用户"/>
+	<s:Label x="24" y="146" color="#B6D219" fontSize="14" text="密码"/>
+	<s:TextInput id="username" x="68" y="99" width="194"/>
+	<s:TextInput id="password" x="68" y="142" width="194" displayAsPassword="true"/>
+	<s:Button x="50" y="189" width="92" height="30" label="登录" chromeColor="#95B429"
+			  click="button2_clickHandler(event)" fontSize="15"/>
+	<s:Button x="159" y="189" width="92" height="30" label="退出" chromeColor="#C85928"
+			  click="button1_clickHandler(event)" focusColor="#EDF004" fontLookup="auto"
+			  fontSize="15"/>
+	<s:Label id="errmsg" x="68" y="77" width="194" color="#FF0000" fontSize="10"/>
+	
+</s:TitleWindow>

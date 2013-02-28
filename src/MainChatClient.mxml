@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+					   xmlns:s="library://ns.adobe.com/flex/spark"
+					   xmlns:mx="library://ns.adobe.com/flex/mx"
+					   width="292" height="632" backgroundColor="#74777A"
+					   creationComplete="window1_creationCompleteHandler(event)">
+	<s:layout>
+		<s:ConstraintLayout/>
+	</s:layout>
+	<fx:Script source="MainChatClientAs.as">
+		
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:Image x="230" y="4" click="image2_clickHandler(event)" smooth="true"
+			 source="@Embed('assets/mini.png')"/>
+	<s:Image x="260" y="5" width="18" height="18" click="image1_clickHandler(event)"
+			 source="@Embed('assets/close.png')"/>
+	<mx:LinkButton id="userId" x="8" y="27" width="146" height="24" focusColor="#E2F259"
+				   fontGridFitType="pixel" fontSize="14"/>
+	<s:VGroup x="3.0" y="97" width="285" height="509">
+		<mx:Tree id="deptUI" x="0" y="0" width="285" height="509" contentBackgroundColor="#C0C6CD"
+				 dataTipField="name" defaultLeafIcon="@Embed(source='assets/user.png')"
+				 disclosureClosedIcon="@Embed('assets/Add_Symbol.png')"
+				 disclosureOpenIcon="@Embed('assets/list-remove.png')" doubleClickEnabled="true"
+				 folderClosedIcon="@Embed(source='assets/group.png')"
+				 folderOpenIcon="@Embed(source='assets/group-open.png')" fontSize="14"
+				 fontWeight="bold" itemDoubleClick="deptUI_itemDoubleClickHandler(event)"
+				 labelField="name" showRoot="false" showScrollTips="true"></mx:Tree>
+	</s:VGroup>
+</s:WindowedApplication>
